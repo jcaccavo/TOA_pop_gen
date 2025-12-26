@@ -15,3 +15,5 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **RenameIndividuals.xlsx**: Excel file to prepare renaming script.
 - **05_PCRduplicatesFilter.sh**: bash script to filter PCR duplicates.
 - **filterPCRdups.py**: python script to filter PCR duplicates (referred to in 05_PCRduplicatesFilter.sh).
+- **06_Concatenate_all.sh**: bash script to concatenate the 4 replicates per individual.
+- 
