@@ -24,8 +24,8 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **09_CorrectOrientation.sh**: The files to continue with are the *.unassembled.forward.fastq and *.unassembled.reverse.fastq. After using merging with [PEAR](https://cme.h-its.org/exelixis/web/software/pear/doc.html), R2 is inverted. This bash script corrects the orientation of R2.
 - **SeqIO_reverseComplement.py**: python script to to correct the orientation of R2 (referred to in 09_CorrectOrientation.sh).
 - **10_QualityFilter.sh**: bash script to remove low quality reads using [Trimmomatic](https://doi.org/10.1093/bioinformatics/btu170).
+- **11_CheckRestSites.sh**: remove reads that don’t start and end with the correct restriction sites. Assure that the correct restriction enzyme sequences are indicated: XbaI **CTAGA**; EcoRI **AATTC**; MspI **CGG**.
 - 
-
 
 ### SNP calling
 - ...
