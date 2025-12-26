@@ -16,4 +16,4 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **05_PCRduplicatesFilter.sh**: bash script to filter PCR duplicates.
 - **filterPCRdups.py**: python script to filter PCR duplicates (referred to in 05_PCRduplicatesFilter.sh).
 - **06_Concatenate_all.sh**: bash script to concatenate the 4 replicates per individual.
-- **07_mapping.sh**: bash script to map concatenated reads to the _D. mawsoni_ referencegenome (read 1 only). The _D. mawsoni_ reference genome is available from GenBank accession number JAAKFY000000000 https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000.
+- **07_mapping.sh**: bash script to map concatenated reads to the _D. mawsoni_ referencegenome (read 1 only). The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
