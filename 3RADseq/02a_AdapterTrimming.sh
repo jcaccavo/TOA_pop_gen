@@ -1,16 +1,16 @@
 #!/bin/bash
 
-Data="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/01_demultiplexing_RADseq"
-out="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/02a_AdapterTrimming"
+Data=".../input_directory/filename.fastq.gz"
+out=".../output_directory"
 
 cd $Data
 
-for r1 in *R1.fastq; do
-        r2=$(echo $r1 | sed 's/R1.fastq/R2.fastq/')
-        baseN=$(echo $r1 | sed 's/_R1.fastq//')
+for r1 in *R1.fastq.gz; do
+        r2=$(echo $r1 | sed 's/R1.fastq.gz/R2.fastq.gz/')
+        baseN=$(echo $r1 | sed 's/_R1.fastq.gz//')
         echo $r1
         echo $r2
         echo $baseN
-        /home/mi/jcaccavo/.local/bin/cutadapt -a AGATCGGAAGAG -A AGATCGGAAGAG -o $out/${baseN}_R1_AT.fastq -p $out/${baseN}_R2_AT.fastq $Data/${r1} $Data/${r2} -m 30 -j 50
+        .../cutadapt -a AGATCGGAAGAG -A AGATCGGAAGAG -o $out/${baseN}_R1_AT.fastq.gz -p $out/${baseN}_R2_AT.fastq.gz $Data/${r1} $Data/${r2} -m 30 -j 50
 
 done
