@@ -3,4 +3,5 @@ This repository contains data files and scripts used for 3RADseq and WGR data an
 
 ## 3RADseq
 Scripts and files required for the analysis of high-output sequencing data produced using 3RADseq.
-- 01_fastqc.sh
+- 01_fastqc.sh: Bash script to check reads quality using fastqc. Output can then be compiled using multiqc.
+- 
