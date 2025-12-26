@@ -2,7 +2,7 @@
 
 INPUT=".../02a_AdapterTrimming"
 OUTPUT=".../03_demultiplexingInlineBarcode"
-INDEX_P5=".../2019_32_Internal_indexes_LIB_P5.fasta"
+INDEX_P5=".../Internal_indexes_P5.fasta"
 INDEX_P7=".../Internal_indexes_P7.fasta"
 LOG=".../03_demultiplexingInlineBarcode/flexbar.log"
 
