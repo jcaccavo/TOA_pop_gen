@@ -21,6 +21,9 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **getInsertSizefromSAM.py**: python script to determine the read length distribution from mapping (.sam) files (referred to in getInsertSizefromSAM.sh).
 - **plotFragSizes_args_fastq.R**: R script to plot read length distributions based on the output from getInsertSizefromSAM.py (referred to in getInsertSizefromSAM.sh).
 - **08_merging.sh**: bash script to merge pair-end reads using [PEAR](https://cme.h-its.org/exelixis/web/software/pear/doc.html). Based on length distributions, modify the following script parameters (the rest remain unchanged): 1) **-n – 30**: specifies the minimum possible length of the assembled sequences. Setting this value to 0 disables the restriction and assembled sequences may be arbitrarily short (default: 50); 2) **-m – 310**: specifies the maximum possible length of the assembled sequences. Setting this value to 0 disables the restriction and assembled sequences may be arbitrarily long (default: 3); **-v – 10**: specifies the minimum overlap size. The minimum overlap may be set to 1 when the statistical test is used. However, further restricting the minimum overlap size to a proper value may reduce false-positive assembles (default: 10).
+- **09_CorrectOrientation.sh**: The files to continue with are the *.unassembled.forward.fastq and *.unassembled.reverse.fastq. After using merging with [PEAR](https://cme.h-its.org/exelixis/web/software/pear/doc.html), R2 is inverted. This bash script corrects the orientation of R2.
+- 
+
 
 
 ### SNP calling
