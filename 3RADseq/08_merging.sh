@@ -1,14 +1,14 @@
 #!/bin/bash
 
-dataPath="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/06_Concatenated"
-outPath="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/08_Merging"
+dataPath=".../06_Concatenated"
+outPath=".../08_Merging"
 
-cd "/srv/public/shared/software/bin/pear-0.9.11-linux-x86_64/bin"
+cd ".../directory where pear is located"
 
-for R1 in $dataPath/*R1.fastq;do
+for R1 in $dataPath/*R1.fastq.gz;do
 	R2=${R1/R1./R2.}
 	FILE=$(basename $R1)
-	SAMPLE=${FILE/_concat_R1.fastq/}
+	SAMPLE=${FILE/_concat_R1.fastq.gz/}
         echo $R1
         echo $R2
         echo $FILE
