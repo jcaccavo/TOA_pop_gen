@@ -1,7 +1,7 @@
 #!/bin/bash
 
 Data=".../input_directory/filename.fastq.gz"
-out=".../output_directory"
+out=".../02a_AdapterTrimming"
 
 cd $Data
 
