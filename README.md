@@ -17,6 +17,10 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **filterPCRdups.py**: python script to filter PCR duplicates (referred to in 05_PCRduplicatesFilter.sh).
 - **06_Concatenate_all.sh**: bash script to concatenate the 4 replicates per individual.
 - **07_mapping.sh**: bash script to map concatenated reads to the _D. mawsoni_ referencegenome (read 1 only). The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
+- **getInsertSizefromSAM.sh**: bash script to determine the read length distribution from mapping (.sam) files.
+- **getInsertSizefromSAM.py**: python script to determine the read length distribution from mapping (.sam) files (referred to in getInsertSizefromSAM.sh).
+- **plotFragSizes_args_fastq.R**: R script to plot read length distributions based on the output from getInsertSizefromSAM.py (referred to in getInsertSizefromSAM.sh).
+- 
 
 ### SNP calling
 - ...
