@@ -3,6 +3,8 @@ This repository contains data files and scripts used for 3RADseq and WGR data an
 
 ## 3RADseq
 Scripts and files required for the analysis of high-output sequencing data produced using 3RADseq.
+
+### Preprocessing
 - **01_fastqc.sh**: bash script to check reads quality using fastqc. Output can then be compiled using multiqc.
 - **02_AdapterTrimming.sh**: bash script to remove sequencing adapters.
 - **02a_AdapterTrimming.sh**: alternative bash script to remove sequencing adapters. In this alternative script, the adapter sequence is adjusted for the Illumina Universal Adapter script, as opposed to the Nextera Transposase Sequence.
