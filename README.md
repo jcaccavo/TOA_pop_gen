@@ -6,4 +6,5 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - 01_fastqc.sh: Bash script to check reads quality using fastqc. Output can then be compiled using multiqc.
 - 02_AdapterTrimming.sh: Bash script to remove sequencing adapters.
 - 02a_AdapterTrimming.sh: Alternative bash script to remove sequencing adapters. In this alternative script, the adapter sequence is adjusted for the Illumina Universal Adapter script, as opposed to the Nextera Transposase Sequence.
-- 03_Demultiplexing.sh: 
+- 03_Demultiplexing.sh: Bash script for demultiplexing. Should be run in a flexbar conda environment.
+- 04_Rename.sh: 
