@@ -117,7 +117,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **PCA.sh**: bash script to run PCA using [plink2](https://www.cog-genomics.org/plink/2.0/).
 - Change the file extension of the FILENAME.eigenvec to FILENAME.txt
 - Replace column 1 of FILENAME.txt with individual names and column 2 with population labels (label columns 1 and 2 “Individual” and “Population” respectively)
-- 
+- **Rplot_PCA.R**: R script to plot PCA output.
     
 
 
