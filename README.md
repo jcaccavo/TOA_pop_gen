@@ -84,7 +84,11 @@ Scripts and files required for the analysis of high-output sequencing data produ
      
 ### Population structure
 #### Admixture
-- ...
+- Convert .fam/.bim/.bed (related individuals) files or .vcf (no related individuals) file to .ped file for analysis.
+    - `.../plink --bfile FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.vcf.KingClean.admix --double-id --allow-extra-chr --set-missing-var-ids @:# --recode 12 --out FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.KingClean.admix`
+    - `.../plink --vcf FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.vcf --double-id --allow-extra-chr --set-missing-var-ids @:# --make-bed --recode12 --out FILENAME.SORTED_min10max120miss0.75_1SNPperlocus`
+- Create subfolders for different population configurations, Stacks parameters, and filter parameters (as needed).
+- 
 
 
 ## WGR
