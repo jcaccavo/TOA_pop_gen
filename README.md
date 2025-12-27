@@ -99,29 +99,18 @@ Scripts and files required for the analysis of high-output sequencing data produ
         - In the `Outputs-FILENAME` folder there will be a P and a Q file for each k value of the Admixture run (normally k = 1 – 10). For each k value run, there are 5 replicates e.g. 4.1.Q – 4.5.Q).
     - In addition, there is `FILENAME.k.x.out` log file for each replicate of each k value replicate (x) run in admixture
 - **cross_validation_plotting.R**: R script to plot the cross-validation (CV) errors using the `FILENAME.admix.CV_All.txt` file.
-- Plot the admixture run
-•	Transfer Outputs-FILENAME folder to local computer
-•	In a local Terminal window, e.g.
-scp -r jcaccavo@curta:/scratch/jcaccavo/Admixture/1_area_p1_p1r0.6/Outputs-1_area_p1_p1r0.6_populations.snps.SORTED.vcf.KingClean.admix .
-•	Retain only the P and Q files of the first replicate of each k value run
-•	Rename the retained P and Q files such that they end in FILENAME.1.P
-•	Create the popfile.txt 
-o	Use Excel to create a two-column file with the first column listing the IDs of all individuals in the population, and the second column indicating the hypothesized population to which each individual belongs
-o	Save the Excel sheet as a Tab-delimited text file (.txt) in the Outputs-FILENAME folder
-•	 In a local Terminal window
-o	Navigate to a folder containing the plot admixture R script, and the folder with the appropriately named P and Q files
-o	Execute the following command, e.g.
-Rscript Rscript_PlotAdmixture.R -p 3_subarea_p3_p1r0.6_min10max120miss0.75_1SNPperlocus/3_subarea_p3_p1r0_6_populations_snps_SORTED_min10max120miss0_75_1SNPperlocus_KingClean_admix -i 3_subarea_p3_p1r0.6_min10max120miss0.75_1SNPperlocus/popfile.txt -l 48.1,48.2,48.4 -m 2 -k 10 -o 3_subarea_p3_p1r0.6_min10max120miss0.75_1SNPperlocus_PlotAdmixture 
- 
--p P and Q filename prefix
--i popfile
--m min k (population mixtures)
--k max k (population mixtures)
--l population subdivisions (the number of categories represented in the popfile.txt)
--o name of the plot file
-
-
-
+- **Rscript_PlotAdmixture.R**: R script to plot Admixture output.
+    - Retain only the P and Q files of the first replicate of each k value run
+    - Rename the retained P and Q files such that they end in FILENAME.1.P
+    - Create the popfile.txt
+        - Can use Excel to create a two-column Tab-delimited text file (.txt) with the first column listing the IDs of all individuals in the population, and the second column indicating the population to which each individual belongs
+    - In the same folder containing the R script and appropriately-named P and Q files execute the following command `Rscript Rscript_PlotAdmixture.R -p .../INPUT -i .../popfile.txt -l pop1,pop2,pop3 -m 2 -k 10 -o .../PLOT
+        - -p P and Q filename prefix
+        - -i popfile
+        - -m min k (population mixtures)
+        - -k max k (population mixtures)
+        - -l population subdivisions (the number of categories represented in the popfile.txt)
+        - -o name of the plot file
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
