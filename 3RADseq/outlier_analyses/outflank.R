@@ -1,9 +1,9 @@
-setwd("/Users/JMAC/Library/CloudStorage/Dropbox/Research/Humboldt/CCGA_full_sequencing/3RAD_outlier_analysis/OutFLANK")
+setwd(".../OutFLANK")
 
 library(vcfR)
 library(OutFLANK)
 
-obj.vcfR <- read.vcfR("3_subarea_p3_p1r0.6_populations.snps.SORTED_min10max120miss0.75_1SNPperlocus.vcf")
+obj.vcfR <- read.vcfR("FILENAME.vcf")
 
 ### creation SNPmat
 geno <- extract.gt(obj.vcfR) # Character matrix containing the genotypes
@@ -90,7 +90,7 @@ head(output$results)
 # 5 goodH 0.9953709 0.2234951        0.8882525       FALSE
 # 6  lowH        NA        NA               NA       FALSE
 
-readr::write_tsv(output$results, file = "OutFLANK_results1.txt")
+readr::write_tsv(output$results, file = "OutFLANK_results.txt")
 
 OutFLANKResultsPlotter(output,withOutliers=TRUE,NoCorr=TRUE,Hmin=0.1,binwidth=0.005,Zoom=FALSE,RightZoomFraction=0.05,titletext=NULL)
 
