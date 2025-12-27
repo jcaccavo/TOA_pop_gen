@@ -121,5 +121,18 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **Rplot_PCA.R**: R script to plot PCA output.
 - **Rplot_PCA_input_files**: input files to create PCA plots using `Rplot_PCA.R`.
 
+### Outlier analysis
+#### pcadapt
+- ...
+
+#### bayescan
+- ...
+
+#### OutFLANK
+- ...
+
+#### Arlequin
+- ...
+
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
