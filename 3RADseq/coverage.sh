@@ -1,6 +1,6 @@
 #!/bin/bash
 
-inDir="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/13_final_mapping"
+inDir=".../13_final_mapping"
 
 for bam in $inDir/*sorted.bam;do # loop over each bam file in inDir
 	echo $bam
