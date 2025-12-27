@@ -141,3 +141,39 @@ Scripts and files required for the analysis of high-output sequencing data produ
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
+
+### Preprocessing & SNP calling
+All details regarding the preprocessing of WGR data and eventual SNP calling can be found in [Caccavo et al. 2024](https://doi.org/10.1111/1755-0998.14013).
+
+### Genomic summary statistics
+#### Genome-wide heterozygosity
+- ...
+
+#### Inbreeding coefficient (F)
+- ...
+
+#### Tajima's D & Watterson's Theta
+- ...
+
+### Neutral and adaptive diversity
+#### [pcadapt](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html)
+- ...
+
+#### [bayescan](https://github.com/mfoll/BayeScan)
+- ...
+
+#### [OutFLANK](https://github.com/whitlock/OutFLANK)
+- ...
+
+### Population structure
+#### [NGSadmix](www.popgen.dk/software/index.php/NgsAdmix)
+- ...
+
+#### [PCAngsd](https://popgen.dk/software/index.php/PCAngsd)
+- ...
+
+### Demographic history
+#### Runs of homozygosity
+- ...
+#### Effective population size (Ne)
+- ...
