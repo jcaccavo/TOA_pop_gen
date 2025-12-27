@@ -113,7 +113,8 @@ Scripts and files required for the analysis of high-output sequencing data produ
         - -o name of the plot file
 - **popfile.txt**: example popfile.
 
-#### Principal Components Analysis
+#### Principal Components Analysis (PCA)
+- **PCA.sh**: bash script to run PCA using [plink2](https://www.cog-genomics.org/plink/2.0/).
 - 
 
 
