@@ -135,8 +135,8 @@ Scripts and files required for the analysis of high-output sequencing data produ
 #### [OutFLANK](https://github.com/whitlock/OutFLANK)
 - **outflank.R**: R script to identify outliers with [OutFLANK](https://github.com/whitlock/OutFLANK) using .vcf file as input.
 
-#### Arlequin
-- ...
+#### FDIST as implemented in [Arlequin](https://cmpg.unibe.ch/software/arlequin35/)
+- Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for FDIST.
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
