@@ -101,9 +101,8 @@ lines(c(log10(FDR),log10(FDR)),c(-1,1),lwd=2)
 return(list("outliers"=outliers,"nb_outliers"=length(outliers)))
 }
 
-setwd("/Users/JMAC/Library/CloudStorage/Dropbox/Research/Humboldt/CCGA_full_sequencing/Outlier_analysis/bayescan")
-#source("plot_R.r")
-results0.05 <- plot_bayescan("02_bayescan_run_2_fst.txt",0,FDR=0.05)
+setwd(".../bayescan")
+results0.05 <- plot_bayescan("bayescan_run_fst.txt",0,FDR=0.05)
 results0.05$outliers
 # [1]   185   186   189   228   317   324   362   407   419   421   429   431   432   433   437
 # [16]   444   445   485   486   487   488   489   507   511   512   513   623   655   661   662
@@ -176,7 +175,7 @@ results0.05$outliers
 results0.05$nb_outliers
 # [1] 10959
 
-results0.01 <- plot_bayescan("02_bayescan_run_2_fst.txt",0,FDR=0.01)
+results0.01 <- plot_bayescan("bayescan_run_fst.txt",0,FDR=0.01)
 results0.01$outliers
 # [1]   185   186   189   228   317   324   362   407   419   421   429   437   444   445   485
 # [16]   486   487   488   489   507   511   512   513   623   661   662   664   717   718   720
@@ -252,7 +251,7 @@ results0.01$nb_outliers
 #export outlier SNP list for FDR=0.01
 lapply(results0.01$outliers, write, "bayescan_outliers_FDR_0.01.txt", append=TRUE)
 
-results0.001 <- plot_bayescan("02_bayescan_run_2_fst.txt",0,FDR=0.001)
+results0.001 <- plot_bayescan("bayescan_run_fst.txt",0,FDR=0.001)
 results0.001$outliers
 # [1]   185   186   189   228   317   324   407   419   429   437   444   445   486   487   488
 # [16]   511   512   513   664   717   718   720   721   722   723   725   727   880   894   901
@@ -325,7 +324,7 @@ results0.001$outliers
 results0.001$nb_outliers
 # [1] 6404
 
-results0.0001 <- plot_bayescan("02_bayescan_run_2_fst.txt",0,FDR=0.0001)
+results0.0001 <- plot_bayescan("bayescan_run_fst.txt",0,FDR=0.0001)
 results0.0001$outliers
 # [1]   185   186   189   228   317   419   429   437   444   445   487   488   511   512   513
 # [16]   664   717   718   721   723   725   727   894   928   929   930   931  1024  1113  1230
@@ -398,7 +397,7 @@ results0.0001$outliers
 results0.0001$nb_outliers
 # [1] 4921
 
-results0.00001 <- plot_bayescan("02_bayescan_run_2_fst.txt",0,FDR=0.00001)
+results0.00001 <- plot_bayescan("bayescan_run_fst.txt",0,FDR=0.00001)
 # Error in text.default(log10(res[res[, colq] <= FDR, ][, colq]) + pos * :
 #                         zero-length 'labels' specified
 ##### Can't go below FDR=0.0001
