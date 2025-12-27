@@ -122,18 +122,18 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **Rplot_PCA_input_files**: input files to create PCA plots using `Rplot_PCA.R`.
 
 ### Outlier analysis
-#### pcadapt
+#### [pcadapt](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html)
 - **pcadapt.R**: R script to run PCAs, create plots, and identify outliers based on population structure using a .bed/.bim/.fam file as input.
 - **pcadapt_input_files**: input files to run outlier analysis using `pcadapt.R`.
 
-#### bayescan
+#### [bayescan](https://github.com/mfoll/BayeScan)
 - Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for bayescan.
 - **bayescan.sh**: bash script to run bayescan on input file created with [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/).
 - **plot_bayescan_R.r**: R script to determine outliers at different significance levels.
 - **bayescan_run_fst.txt**: input file to determine outliers at different significance levels using `plot_bayescan_R.r`
 
-#### OutFLANK
-- 
+#### [OutFLANK](https://github.com/whitlock/OutFLANK)
+- **outflank.R**: R script to identify outliers with [OutFLANK](https://github.com/whitlock/OutFLANK) using .vcf file as input.
 
 #### Arlequin
 - ...
