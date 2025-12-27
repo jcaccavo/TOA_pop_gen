@@ -129,10 +129,11 @@ Scripts and files required for the analysis of high-output sequencing data produ
 #### bayescan
 - Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for bayescan.
 - **bayescan.sh**: bash script to run bayescan on input file created with [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/).
-- 
+- **plot_bayescan_R.r**: R script to determine outliers at different significance levels.
+- **bayescan_run_fst.txt**: input file to determine outliers at different significance levels using `plot_bayescan_R.r`
 
 #### OutFLANK
-- ...
+- 
 
 #### Arlequin
 - ...
