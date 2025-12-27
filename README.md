@@ -98,6 +98,8 @@ Scripts and files required for the analysis of high-output sequencing data produ
     - Output folder (with P and Q files) `Outputs-FILENAME`
         - In the `Outputs-FILENAME` folder there will be a P and a Q file for each k value of the Admixture run (normally k = 1 – 10). For each k value run, there are 5 replicates e.g. 4.1.Q – 4.5.Q).
     - In addition, there is `FILENAME.k.x.out` log file for each replicate of each k value replicate (x) run in admixture
+- **cross_validation_plotting.R**: R script to plot the cross-validation (CV) errors using the `FILENAME.admix.CV_All.txt` file.
+
 
 
 
