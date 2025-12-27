@@ -16,7 +16,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **05_PCRduplicatesFilter.sh**: bash script to filter PCR duplicates.
 - **filterPCRdups.py**: python script to filter PCR duplicates (referred to in 05_PCRduplicatesFilter.sh).
 - **06_Concatenate_all.sh**: bash script to concatenate the 4 replicates per individual.
-- **07_mapping.sh**: bash script to map concatenated reads to the _D. mawsoni_ referencegenome (read 1 only). The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
+- **07_mapping.sh**: bash script to map concatenated reads to the _D. mawsoni_ reference genome (read 1 only). The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
 - **getInsertSizefromSAM.sh**: bash script to determine the read length distribution from mapping (.sam) files.
 - **getInsertSizefromSAM.py**: python script to determine the read length distribution from mapping (.sam) files (referred to in getInsertSizefromSAM.sh).
 - **plotFragSizes_args_fastq.R**: R script to plot read length distributions based on the output from getInsertSizefromSAM.py (referred to in getInsertSizefromSAM.sh).
@@ -30,6 +30,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **12c_3enzymesFilter.sh**: this in a set of three bash script to remove undigested reads. This third script filters out the reads indicated in the list created in the previous script.
 - **Filter_reads.py**: python script to remove undigested read (referred to in 12c_3enzymesFilter.sh).
 - **13_final_fastqc.sh**: bash script to check reads quality using fastqc after all pre-processing steps. Output can then be compiled using multiqc.
+- **14_final_mapping.sh**: bash script to map fully pre-processed reads to the _D. mawsoni_ reference genome. The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
 - 
   
 ### SNP calling
