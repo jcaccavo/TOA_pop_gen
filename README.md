@@ -137,6 +137,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 
 #### FDIST as implemented in [Arlequin](https://cmpg.unibe.ch/software/arlequin35/)
 - Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for FDIST.
+- **FDIST_input.arp**: input file for FDIST.
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
