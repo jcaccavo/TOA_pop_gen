@@ -111,6 +111,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
         - -k max k (population mixtures)
         - -l population subdivisions (the number of categories represented in the popfile.txt)
         - -o name of the plot file
+- **popfile.txt**: example popfile.
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
