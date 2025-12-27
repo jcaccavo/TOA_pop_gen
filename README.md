@@ -59,7 +59,16 @@ Scripts and files required for the analysis of high-output sequencing data produ
     - **populations.snps.vcf** will be used for downstream filtering and subsequent population structure analyses.
 - **Sort .vcf files** by running the following command for each .vcf file: `cat FILENAME.vcf | awk '$1 ~ /^#/ {print $0;next} {print $0 | "sort -k1,1V -k2,2n"}' > FILENAME.SORTED.vcf`
 - **Filter .vcf files** using [VCFtools](https://vcftools.github.io/index.html). Navigate to folder with .vcf files, and run each filtering command separately for each individual .vcf file. After each filtering step, count the number of SNPs remaining. To count SNPs in a .vcf file: `vcftools --vcf FILENAME.vcf`
-- 
+    - **Minimum coverage**: minimum depth to call a genotype – reduces genotype miscalls. Check a minimum coverage of 10 and 15 to see how SNP numbers change. A minimum coverage of 10 is standard. `vcftools --vcf FILENAME.SORTED.vcf --min-meanDP 10 --minDP 10 --recode --stdout > FILENAME.SORTED_mincov10.vcf`
+    - **Maximum coverage**: maximum depth to call a genotype – removes SNPs derived from RAD loci representing collapsed paralogs. Check maximum coverage at 80, 100, and 120. A maximum coverage of 120 is standard. `vcftools --vcf FILENAME.SORTED.vcf --max-meanDP 120 --maxDP 120 --recode --stdout > FILENAME.SORTED_maxcov120.vcf`
+    - **Missingness**: excludes sites based on the proportion of missing data. Check 0.75, 0.8, 0.9, and 0.95, allowing 25%, 20%, 10%, and 5% of missing data at sites, respectively. A maximum of 25% missing data allowable at sites is standard. `vcftools --vcf FILENAME.SORTED.vcf --max-missing 0.75 --recode --stdout > FILENAME.SORTED_miss0.75.vcf`
+    - **1 SNP per locus**: reduce linkage among SNPs. `vcftools --vcf FILENAME.SORTED.vcf --thin 500 --recode --stdout > FILENAME.SORTED_1SNPperlocus.vcf`
+    - **Minimum Allele Frequency (MAF)**: include only sites with a MAF greater than or equal to the "--maf" value. Allele frequency is defined as the number of times an allele appears over all individuals at that site, divided by the total number of non-missing alleles at that site. Check MAF values of 0.01, 0.05, and 0.1. MAF = 0.01 is standard. This filtering step is not included in the combined filtering process, nor is it necessarily required for downstream analyses. `vcftools --vcf FILENAME.SORTED.vcf --maf 0.1 --recode --stdout > FILENAME.SORTED.vcf_maf0.1.vcf`
+    - **Combine filtering steps**: once a set of filtering parameters has been decided on, perform filtering steps iteratively, e.g.,
+        - Min coverage = 10 + Max coverage = 120 `vcftools --vcf FILENAME.SORTED.vcf --min-meanDP 10 --minDP 10 --max-meanDP 120 --maxDP 120 --recode --stdout > FILENAME.SORTED_min10max120.vcf`
+        - Min coverage = 10 + Max coverage = 120 + Missingness = 0.75 `vcftools --vcf FILENAME.SORTED.vcf --max-missing 0.75 --min-meanDP 10 --minDP 10 --max-meanDP 120 --maxDP 120 --recode --stdout > FILENAME.SORTED_min10max120miss0.75.vcf`
+        - Min coverage = 10 + Max coverage = 120 + Missingness = 0.75 + 1 SNP/locus `vcftools --vcf FILENAME.SORTED.vcf --max-missing 0.75 --min-meanDP 10 --minDP 10 --max-meanDP 120 --maxDP 120 --thin 500 --recode --stdout > FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.vcf`
+
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
