@@ -112,14 +112,14 @@ Scripts and files required for the analysis of high-output sequencing data produ
         - -l population subdivisions (the number of categories represented in the popfile.txt)
         - -o name of the plot file
 - **popfile.txt**: example popfile.
+- **Rscript_PlotAdmixture_input_files**: input files to create Admixture plots using `Rscript_PlotAdmixture.R`.
 
 #### Principal Components Analysis (PCA)
 - **PCA.sh**: bash script to run PCA using [plink2](https://www.cog-genomics.org/plink/2.0/).
 - Change the file extension of the FILENAME.eigenvec to FILENAME.txt
 - Replace column 1 of FILENAME.txt with individual names and column 2 with population labels (label columns 1 and 2 “Individual” and “Population” respectively)
 - **Rplot_PCA.R**: R script to plot PCA output.
-    
-
+- **Rplot_PCA_input_files**: input files to create PCA plots using `Rplot_PCA.R`.
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
