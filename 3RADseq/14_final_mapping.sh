@@ -1,6 +1,6 @@
 #!/bin/bash
 
-genome="/srv/public/users/jcaccavo/00_genome/Dmawsoni_scaffolds_v1MOD"
+genome=".../Dmawsoni_scaffolds_v1MOD"
 out="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/13_final_mapping"
 
 cd /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/12_Filter3rdEnzyme/Filtered3enzymes
