@@ -31,6 +31,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **Filter_reads.py**: python script to remove undigested read (referred to in 12c_3enzymesFilter.sh).
 - **13_final_fastqc.sh**: bash script to check reads quality using fastqc after all pre-processing steps. Output can then be compiled using multiqc.
 - **14_final_mapping.sh**: bash script to map fully pre-processed reads to the _D. mawsoni_ reference genome. The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
+- **15_convert_sam_to_bam.sh**: bash script employign [samtools view](https://www.htslib.org/doc/samtools-view.html) to convert .sam files generated from mapping to .bam files.
 - 
   
 ### SNP calling
