@@ -5,7 +5,7 @@ library(sfsmisc)
 #Plots for Admixture cross-validation results
 
 #****Change path below to correct file
-results <- read.delim("/ FULL PATH TO / NAME.CV_Avg.txt", header = TRUE, sep = "\t")
+results <- read.delim("/ FULL PATH TO / NAME.CV_All.txt", header = TRUE, sep = "\t")
 results
 
 ls(results)
