@@ -69,31 +69,17 @@ Scripts and files required for the analysis of high-output sequencing data produ
         - Min coverage = 10 + Max coverage = 120 + Missingness = 0.75 `vcftools --vcf FILENAME.SORTED.vcf --max-missing 0.75 --min-meanDP 10 --minDP 10 --max-meanDP 120 --maxDP 120 --recode --stdout > FILENAME.SORTED_min10max120miss0.75.vcf`
         - Min coverage = 10 + Max coverage = 120 + Missingness = 0.75 + 1 SNP/locus `vcftools --vcf FILENAME.SORTED.vcf --max-missing 0.75 --min-meanDP 10 --minDP 10 --max-meanDP 120 --maxDP 120 --thin 500 --recode --stdout > FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.vcf`
     - **Hardy-Weinberg Equilibrium (HWE)**: removes sites that depart from HWE for downstream demographic analyses. Perform HWE filter after min coverage, max coverage and missingness filters, but before 1 SNP/locus filter; do not include this filter in the combined iterative process described above. Use the software `perl`, and the relevant popmap file created for [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) `perl /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/x_scripts/05_HW_sites.pl -v /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/00_Stacks/FILENAME.SORTED_min10max120miss0.75.vcf -p /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/x_scripts/popmap_subarea.txt --hwe 0.01 -o FILENAME.SORTED_minmeanDPminDPmaxmeanDPmaxDPmiss0.75HWE`
-    - **Clean related individuals**: downstream population structure analyses cannot include related individuals. Use [plink2](https://www.cog-genomics.org/plink/2.0/)
-•	Navigate to scripts folder
-jcaccavo@lagoa:/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/x_scripts
-•	Update PREFIX= with the relevant filename
-•	Update VCF_sorted= with the file location (if needed)
-•	Update OUTpath= with output file location
-•	Run script 01_clean_related.sh
-bash 01_clean_related.sh
-•	Script 
-#Prepare files to run Admixture
-PREFIX="3_subarea_p3_p1r0.6_populations.snps.SORTED_min10max120miss0.75_1SNPperlocus.vcf"
-VCF_sorted="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/00_Stacks/${PREFIX}"
-OUTpath="/srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/01_admixture/3_subarea_p3/3_subarea_p3_p1r0.6"
-#Prepare genotype file using plink
-#1) Clean related individuals
-/srv/public/shared/software/bin/plink2 --vcf $VCF_sorted --double-id --allow-extra-chr --king-cutoff 0.0884 --set-missing-var-ids @:# --make-bed --out ${OUTpath}/${PREFIX}.KingClean.$
-•	The 01_clean_related.sh outputs 3 files to use in downstream analyses
-o	FILENAME.vcf.KingClean.admix.fam
-o	FILENAME.vcf.KingClean.admix.bim
-o	FILENAME.vcf.KingClean.admix.bed
-•	In addition to a log file (FILENAME.vcf.KingClean.admix.log) 01_clean_related.sh outputs 2 files that contain the sample IDs of individuals in the population that are unrelated (FILENAME.vcf.KingClean.admix.king.cutoff.in.id) and the sample IDs of individuals in the population that were removed due to being related to other individuals in the population (FILENAME.vcf.KingClean.admix.king.cutoff.out.id)
-•	If there are no related individuals (indicated both in the FILENAME.vcf.KingClean.admix.king.cutoff.out.id  file, as well as in the FILENAME.vcf.KingClean.admix.log file), then subsequent steps can be carried out on the combined filtered vcf file created in Step 6 (FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.vcf)
-•	If there are related individuals, then filtering steps should be carried out on the FAM/BIM/BED files created as outputs of the 01_clean_related.sh script
-
-  
+    - **18_clean_related.sh**: bash script to clean related individuals using [plink2](https://www.cog-genomics.org/plink/2.0/). Downstream population structure analyses cannot include related individuals. Update script:
+        - PREFIX= with the relevant filename
+        - VCF_sorted= with the file location (if needed)
+        - OUTpath= with output file location
+    - The 3 outputs files to use in downstream analyses:
+        - FILENAME.vcf.KingClean.admix.fam
+        - FILENAME.vcf.KingClean.admix.bim
+        - FILENAME.vcf.KingClean.admix.bed
+    - In addition to a log file (FILENAME.vcf.KingClean.admix.log) 01_clean_related.sh outputs 2 files that contain the sample IDs of individuals in the population that are unrelated (FILENAME.vcf.KingClean.admix.king.cutoff.in.id) and the sample IDs of individuals in the population that were removed due to being related to other individuals in the population (FILENAME.vcf.KingClean.admix.king.cutoff.out.id)
+    - If there are no related individuals (indicated both in the FILENAME.vcf.KingClean.admix.king.cutoff.out.id  file, as well as in the FILENAME.vcf.KingClean.admix.log file), then subsequent steps can be carried out on the combined filtered vcf file created after combined filtering.
+    - If there are related individuals, then filtering steps should be carried out on the .fam/.bim/.bed files created as outputs of the `01_clean_related.sh` script
 
 
 ## WGR
