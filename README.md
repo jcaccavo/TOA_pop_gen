@@ -71,9 +71,9 @@ Scripts and files required for the analysis of high-output sequencing data produ
     - **Hardy-Weinberg Equilibrium (HWE)**: removes sites that depart from HWE for downstream demographic analyses. Perform HWE filter after min coverage, max coverage and missingness filters, but before 1 SNP/locus filter; do not include this filter in the combined iterative process described above. Use the software `perl`, and the relevant popmap file created for [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) `perl /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/x_scripts/05_HW_sites.pl -v /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/00_Stacks/FILENAME.SORTED_min10max120miss0.75.vcf -p /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/x_scripts/popmap_subarea.txt --hwe 0.01 -o FILENAME.SORTED_minmeanDPminDPmaxmeanDPmaxDPmiss0.75HWE`
     - **18_clean_related.sh**: bash script to clean related individuals using [plink2](https://www.cog-genomics.org/plink/2.0/). Downstream population structure analyses cannot include related individuals.
         - Update script:
-            - PREFIX= with the relevant filename
-            - VCF_sorted= with the file location (if needed)
-            - OUTpath= with output file location
+            - **PREFIX**: with the relevant filename
+            - **VCF_sorted**: with the file location (if needed)
+            - **OUTpath**: with output file location
         - The 3 outputs files to use in downstream analyses:
             - FILENAME.vcf.KingClean.admix.fam
             - FILENAME.vcf.KingClean.admix.bim
