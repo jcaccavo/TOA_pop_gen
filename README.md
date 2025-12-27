@@ -127,7 +127,9 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **pcadapt_input_files**: input files to run outlier analysis using `pcadapt.R`.
 
 #### bayescan
-- ...
+- Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for bayescan.
+- **bayescan.sh**: bash script to run bayescan on input file created with [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/).
+- 
 
 #### OutFLANK
 - ...
