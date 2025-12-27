@@ -1,1 +1,1 @@
-/srv/public/shared/software/bin/fastqc -t 32 /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/12_Filter3rdEnzyme/Filtered3enzymes/* -o /srv/public/users/jcaccavo/11_CCGA_full_seq/02_NovaSeq/01_RADseq/fastqc_final
+.../fastqc -t 32 .../Filtered3enzymes/* -o .../fastqc_final
