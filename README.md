@@ -123,7 +123,8 @@ Scripts and files required for the analysis of high-output sequencing data produ
 
 ### Outlier analysis
 #### pcadapt
-- **pcadapt.R**: R script to run PCAs, create plots, and identify outliers based on population structure using .bed/.bim/.fam files as input.
+- **pcadapt.R**: R script to run PCAs, create plots, and identify outliers based on population structure using a .bed/.bim/.fam file as input.
+- **pcadapt_input_files**: input files to run outlier analysis using `pcadapt.R`.
 
 #### bayescan
 - ...
