@@ -29,6 +29,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **12b_SaveHeaders.sh**: second in a set of three bash scripts to remove undigested reads. This second script saves the headers of reads with intact restriction sites. Assure that the correct restriction enzyme sequences are indicated; note that these sequence indications include the base pair before the cut site. The first restriction site sequence is for the 1st enzyme (start) (e.g., XbaI or MspI). The second restriction site sequence is for the 3rd enzyme (middle) (e.g., ClaI or NheI). The third rescrition site sequence is for the 2nd enzyme (end, EcoRI). **XbaI** TCTAGA; **EcoRI** GAATTC; **MspI** CCGG; **ClaI** ATCGAT; **NheI** GCTAGC.
 - **12c_3enzymesFilter.sh**: this in a set of three bash script to remove undigested reads. This third script filters out the reads indicated in the list created in the previous script.
 - **Filter_reads.py**: python script to remove undigested read (referred to in 12c_3enzymesFilter.sh).
+- **13_final_fastqc.sh**: bash script to check reads quality using fastqc after all pre-processing steps. Output can then be compiled using multiqc.
 - 
   
 ### SNP calling
