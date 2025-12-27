@@ -1,13 +1,8 @@
-# load tidyverse package
 library(tidyverse)
 library(ggplot2)
-# install.packages("ggrepel")
-# require("ggrepel")
 library(ggrepel)
 
-setwd("/Users/JMAC/Library/CloudStorage/Dropbox/Research/Humboldt/CCGA_full_sequencing/3RAD_pop_analysis/PCA2021")
-# setwd("3_subarea_p3_p1r0.6_min10max120miss0.75_1SNPperlocus_sex")
-
+setwd(".../PCA")
 #Then we will use a combination of readr and the standard scan function to read in the data.
 # read in data
 pca <- read.delim("./subarea_p3_p1r0.6_populations.snps.2021.sorted_min10max120miss0.75_1SNPperlocus.vcf.KingClean_PCA.txt")
