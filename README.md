@@ -36,7 +36,11 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **coverage.sh**: bash script employing [samtools depth](https://www.htslib.org/doc/samtools-depth.html) to check post-preprocessing coverage of each library.
   
 ### SNP calling
-- ...
+- **Create popmap file(s)**: create as many popmap files as potential population configurations. This can be done in Excel, saving each popmap sheet as tab-delimited text file (.txt). Column 1 of the popmap file must contain the individual sample names EXACTLY as they are written for the .bam files. Column 2 contains the population number to which the individual belongs (e.g. 1, 2, 5, etc.).
+- **17_Stacks.sh**: bash script to run [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php). **inPath**: location of the .bam files which represent the reads mapped to the genome (only the .bam files to be processed should be in the input folder). **outPath**: where you want to save the output files. **popmap**: the location of the popmap file to be used. **Refmap**: the location of the Refmap file, which is a [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) file. This is either located in the directory where [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) downloaded, or you can copy the file to your scripts folder. **PREFIX**: how you want the output files to be labelled. This should be based on your popmap file name. Each $Refmap run refers to a different run of [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php). The standard bash script runs [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) 3 times with 3 different sets of parameters. For each $Refmap line, change the name of the $popmap file after --popmap based on the name of the popmap file given in the script header.
+- 
+
+
 
 ## WGR
 Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
