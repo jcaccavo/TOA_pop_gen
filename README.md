@@ -202,6 +202,7 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 - install smc++ (see `smc_installation_notes.txt`)
 - **vcf2smc.sh**: bash script to convert .vcf into smc file for each population, distinct indvidual, and scaffold separately (takes about 30 seconds per file)
 - estimate Ne for each population (takes approximately 2 hours per population) `smc++ estimate 2.85e-8 .../88/*.smc.gz -o 88_ne_1_mut285 --timepoints 33 100000 -c 50000 -rp .1 --knots 60 --spline cubic`
-- create a .csv file basedon on the .json output files from the Ne calculations per population to create input for plotting analysis in R `cd .../plot_outputs/
-smc++ plot area_ne_plot.png .../48_ne/model.final.json .../58_ne/model.final.json /88_ne/model.final.json -g 15 -c`
+- create a .csv file basedon on the .json output files from the Ne calculations per population to create input for plotting analysis in R
+`cd .../plot_outputs/`
+`smc++ plot area_ne_plot.png .../48_ne/model.final.json .../58_ne/model.final.json /88_ne/model.final.json -g 15 -c`
 - **plot_ne.R**: R script to plot Ne output based on .csv file created in previous step
