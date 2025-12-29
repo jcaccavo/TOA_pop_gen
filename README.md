@@ -185,7 +185,9 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 - **PCAngsd.sh**: bash script to run PCAngsd
 
 ### Demographic history
-#### Runs of homozygosity
-- ...
+#### Runs of homozygosity (ROH)
+- Using [plink](https://www.cog-genomics.org/plink/1.9/ibd#homozyg) and parameters derived from [Meyermans et al. 2020](https://doi.org/10.1186/s12864-020-6463-x) `plink --allow-extra-chr --bfile .../INPUT_FILE_NAME --homozyg-snp 30 --homozyg-kb 100  --homozyg-gap 1000 --homozyg-window-snp 30 --homozyg-window-het 4 --homozyg-window-missing 5 --homozyg-window-threshold 0.05 --homozyg-density 100 --out .../FILENAME_ROH`
+- **plot_ROH.R**: R script to plot ROH based on .hom output file
+
 #### Effective population size (Ne)
 - ...
