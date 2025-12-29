@@ -1,6 +1,6 @@
 # Calculate heterozygosity from realSFS output .ml file
 
-setwd("/Users/JMAC/Library/CloudStorage/Dropbox/Research/Humboldt/CCGA_full_sequencing/ANGSD/heterozygosity/realSFS_folded_estimates_ml/5X")
+setwd(".../ANGSD/heterozygosity/realSFS_folded_estimates_ml/")
 
 # 5X samples
 
