@@ -169,7 +169,7 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 - **WG_pcadapt.R**: R script to run PCAs, create plots, and identify WGR outliers based on population structure using a .bed/.bim/.fam file as input.
 
 #### [bayescan](https://github.com/mfoll/BayeScan)
--**WGR_bayescan_input_file_prep.R**: R script to prepare input file for bayescan based on [tutorial from Laura Benestan](https://rpubs.com/lbenestan/outlier)
+- **WGR_bayescan_input_file_prep.R**: R script to prepare input file for bayescan based on [tutorial from Laura Benestan](https://rpubs.com/lbenestan/outlier)
 - **WGR_bayescan.sh**: bash script to run bayescan on input file created with `WGR_bayescan_input_file_prep.R`
 - **WGR_plot_bayescan_R.r**: R script to determine outliers at different significance levels
 
