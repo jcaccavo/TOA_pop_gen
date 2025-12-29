@@ -166,7 +166,7 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 
 ### Neutral and adaptive diversity
 #### [pcadapt](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html)
-- 
+- **WG_pcadapt.R**: R script to run PCAs, create plots, and identify WGR outliers based on population structure using a .bed/.bim/.fam file as input.
 
 #### [bayescan](https://github.com/mfoll/BayeScan)
 - ...
