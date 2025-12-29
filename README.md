@@ -8,7 +8,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **01_fastqc.sh**: bash script to check reads quality using fastqc. Output can then be compiled using multiqc
 - **02_AdapterTrimming.sh**: bash script to remove sequencing adapters
 - **02a_AdapterTrimming.sh**: alternative bash script to remove sequencing adapters. In this alternative script, the adapter sequence is adjusted for the Illumina Universal Adapter script, as opposed to the Nextera Transposase Sequence.
-- **03_Demultiplexing.sh**: bash script for demultiplexing. Should be run in a flexbar conda environment
+- **03_Demultiplexing.sh**: bash script for demultiplexing. Should be run in a flexbar conda environment.
 - **Internal_indexes_LIB_P5**: P5 internal indexes (referred to in `03_Demultiplexing.sh`)
 - **Internal_indexes_LIB_P7**: P7 internal indexes (referred to in `03_Demultiplexing.sh`)
 - **04_Rename.sh**: bash script to rename demultiplexed files. Demultiplexing will have produced a lot of files, i.e., 2 reads x number of library pools x number of barcode combinations. Prepare renaming script using Excel following RenameIndividuals.xlsx example, and then replace the contents of the script uploaded here with your relevant input.
@@ -79,7 +79,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
             - `FILENAME.vcf.KingClean.admix.bim`
             - `FILENAME.vcf.KingClean.admix.bed`
         - In addition to a log file (FILENAME.vcf.KingClean.admix.log) 01_clean_related.sh outputs 2 files that contain the sample IDs of individuals in the population that are unrelated (FILENAME.vcf.KingClean.admix.king.cutoff.in.id) and the sample IDs of individuals in the population that were removed due to being related to other individuals in the population (`FILENAME.vcf.KingClean.admix.king.cutoff.out.id`)
-        - If there are no related individuals (indicated both in the `FILENAME.vcf.KingClean.admix.king.cutoff.out.id` file, as well as in the `FILENAME.vcf.KingClean.admix.log` file), then subsequent steps can be carried out on the combined filtered vcf file created after combined filtering
+        - If there are no related individuals (indicated both in the `FILENAME.vcf.KingClean.admix.king.cutoff.out.id` file, as well as in the `FILENAME.vcf.KingClean.admix.log` file), then subsequent steps can be carried out on the combined filtered .vcf file created after combined filtering
         - If there are related individuals, then filtering steps should be carried out on the .fam/.bim/.bed files created as outputs of the `01_clean_related.sh` script
      
 ### Population structure
@@ -190,4 +190,18 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 - **plot_ROH.R**: R script to plot ROH based on .hom output file
 
 #### Effective population size (Ne)
-- ...
+- compress annotated (but not filtered) .vcf file with bgzip `bgzip -c .../FILENAME_unfiltered_SNPs_annotated.vcf > .../FILENAME_unfiltered_SNPs_annotated.vcf.gz`
+- index the compressed .vcf file with bcftools (note - bcftools should be run in a bcftools conda environment) `bcftools index .../FILENAME_unfiltered_SNPs_annotated.vcf.gz`
+- retain only scaffolds >1 Mba `bcftools view .../FILENAME_unfiltered_SNPs_annotated.vcf.gz --regions HiC_scaffold_5,HiC_scaffold_25,HiC_scaffold_10,HiC_scaffold_38,HiC_scaffold_22,HiC_scaffold_35,HiC_scaffold_26,HiC_scaffold_31,HiC_scaffold_1,HiC_scaffold_6,HiC_scaffold_21,HiC_scaffold_30,HiC_scaffold_4,HiC_scaffold_8,HiC_scaffold_41,HiC_scaffold_11,HiC_scaffold_3,HiC_scaffold_34,HiC_scaffold_32,HiC_scaffold_28,HiC_scaffold_13,HiC_scaffold_33,HiC_scaffold_24,HiC_scaffold_23,HiC_scaffold_58,HiC_scaffold_54,HiC_scaffold_1093,HiC_scaffold_1088 -Ov -o .../FILENAME_unfiltered_SNPs_annotated_28_longest.vcf.gz`
+- filter SNPs out of HWE on .vcf file without MAF filter (takes about 10 minutes) `vcftools --gzvcf /.../FILENAME_unfiltered_SNPs_annotated_28_longest.vcf.gz --hwe 0.001 --recode --out .../FILENAME_unfiltered_SNPs_annotated_28_longest_hwe0.001.vcf`
+- compress .vcf output from HWE filter with bgzip `bgzip -c .../FILENAME_unfiltered_SNPs_annotated_28_longest_hwe0.001.vcf > .../FILENAME_unfiltered_SNPs_annotated_28_longest_hwe0.001.vcf.gz`
+- filter low quality SNPs (no MAF filter) `bcftools view --max-alleles 2 --exclude-types indels -e 'MQ<30 || QUAL<20 || AN/2<18' .../FILENAME_unfiltered_SNPs_annotated_28_longest_hwe0.001.vcf.gz -Ov -o .../FILENAME_filtered_SNPs_28_longest_hwe0.001.vcf.gz`
+- index the final .vcf file with bcftools `bcftools index .../FILENAME_filtered_SNPs_28_longest_hwe0.001.vcf.gz`
+- compress genome masking bedfile with bgzip `bgzip -c .../D.mawsoni.genome7.bed > .../D.mawsoni.genome7.bed.gz`
+- index genome masking bed file with samtools [tabix](https://www.htslib.org/doc/tabix.html) `tabix -p bed .../D.mawsoni.genome7.bed.gz`
+- install smc++ (see `smc_installation_notes.txt`)
+- **vcf2smc.sh**: bash script to convert .vcf into smc file for each population, distinct indvidual, and scaffold separately (takes about 30 seconds per file)
+- estimate Ne for each population (takes approximately 2 hours per population) `smc++ estimate 2.85e-8 .../88/*.smc.gz -o 88_ne_1_mut285 --timepoints 33 100000 -c 50000 -rp .1 --knots 60 --spline cubic`
+- create a .csv file basedon on the .json output files from the Ne calculations per population to create input for plotting analysis in R ```cd .../plot_outputs/
+smc++ plot area_ne_plot.png .../48_ne/model.final.json .../58_ne/model.final.json /88_ne/model.final.json -g 15 -c
+- **plot_ne.R**: R script to plot Ne output based on .csv file created in previous step
