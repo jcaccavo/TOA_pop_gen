@@ -158,7 +158,11 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 - The final run using the initial values as priors should take 6 hours per .glf file (depending on the size)
 
 #### Tajima's D & Watterson's Theta
-- ...
+- **tajimaD_wattersonTHETA.sh**: bash script to estimate Tajima's D & Watterson's Theta.
+- Estimating the saf file per population takes 20 - 30 minutes (depending on the size)
+- Estimating the folded SFS takes around 50 minutes (depending on the size)
+- Estimating nucleotide diversty per site takes around 40 minutes (depending on the size)
+- Estimating Tajima's D and Watterson's Theta with a sliding window (window size 50 kb, step size 10 kb) takes around 25 minutes (depending on the size)
 
 ### Neutral and adaptive diversity
 #### [pcadapt](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html)
