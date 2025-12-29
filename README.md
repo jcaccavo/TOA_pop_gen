@@ -166,7 +166,7 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 
 ### Neutral and adaptive diversity
 #### [pcadapt](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html)
-- ...
+- 
 
 #### [bayescan](https://github.com/mfoll/BayeScan)
 - ...
