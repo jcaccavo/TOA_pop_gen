@@ -27,10 +27,10 @@ install.packages('hierfstat')
 library(hierfstat)
 
 # Set working directory as the location of your vcf file
-setwd("/Users/JMAC/Library/CloudStorage/Dropbox/Research/Humboldt/CCGA_full_sequencing/WG_outlier_analysis/WG_bayescan/unlinked_SNPs/downsampled_2X")
+setwd(".../INPUT_DIRECTORY")
 toothfish <- genomic_converter(
-  data = "2x_TOA_only_filtered_SNPs_all_unlinked.vcf", strata = "WG_bayescan_popmap_2x.txt",
-  output = c("bayescan"), filename="2x_unlinked_TOA_only_filtered_SNPs_all.geste")
+  data = "FILENAME.vcf", strata = "popmap.txt",
+  output = c("bayescan"), filename="FILENAME.geste")
 # ################################################################################
 # ######################### radiator::genomic_converter ##########################
 # ################################################################################
