@@ -147,7 +147,9 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 
 ### Genomic summary statistics
 #### Genome-wide heterozygosity
-- ...
+- For each .bam file, estimate the per individual saf file `angsd -i FILENAME.bam -anc .../D.mawsoni.genome.fasta -dosaf 1 -gl 1 -nThreads 40 -out DoSaf_FILENAME`
+- Then estimate the per indivdual folded SFS `realSFS DoSaf_FILENAME.idx > DoSaf_FILENAME_est.ml`
+- 
 
 #### Inbreeding coefficient (F)
 - ...
