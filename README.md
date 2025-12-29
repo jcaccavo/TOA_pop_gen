@@ -88,17 +88,17 @@ Scripts and files required for the analysis of high-output sequencing data produ
     - `.../plink --bfile FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.vcf.KingClean.admix --double-id --allow-extra-chr --set-missing-var-ids @:# --recode 12 --out FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.KingClean.admix`
     - `.../plink --vcf FILENAME.SORTED_min10max120miss0.75_1SNPperlocus.vcf --double-id --allow-extra-chr --set-missing-var-ids @:# --make-bed --recode12 --out FILENAME.SORTED_min10max120miss0.75_1SNPperlocus`
 - Create subfolders for different population configurations, Stacks parameters, and filter parameters (as needed).
-- **Run_admixture.sh**: bash script to batch run Admixture.
+- **Run_admixture.sh**: bash script to batch run Admixture
     - Modify Path= to the folder where the .ped file is stored,
     - Admixture run can take from 30 minutes to 4 hours, depending on the number of SNPs in the .ped file
-- **admixture-wrapper.py**: python script used to run Admixture (referred to in `Run_admixture.sh`).
+- **admixture-wrapper.py**: python script used to run Admixture (referred to in `Run_admixture.sh`)
 - Output files include
     - Run log `admixture_wrapper.log`
     - Cross-validation error files: `FILENAME.CV_All.txt`, `FILENAME.CV_Avg.txt`
     - Output folder (with P and Q files) `Outputs-FILENAME`
         - In the `Outputs-FILENAME` folder there will be a P and a Q file for each k value of the Admixture run (normally k = 1 – 10). For each k value run, there are 5 replicates e.g. 4.1.Q – 4.5.Q).
     - In addition, there is `FILENAME.k.x.out` log file for each replicate of each k value replicate (x) run in admixture
-- **cross_validation_plotting.R**: R script to plot the cross-validation (CV) errors using the `FILENAME.admix.CV_All.txt` file.
+- **cross_validation_plotting.R**: R script to plot the cross-validation (CV) errors using the `FILENAME.admix.CV_All.txt` file
 - **Rscript_PlotAdmixture.R**: R script to plot Admixture output
     - Retain only the P and Q files of the first replicate of each k value run
     - Rename the retained P and Q files such that they end in FILENAME.1.P
@@ -115,7 +115,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **Rscript_PlotAdmixture_input_files**: input files to create Admixture plots using `Rscript_PlotAdmixture.R`.
 
 #### Principal Components Analysis (PCA)
-- **PCA.sh**: bash script to run PCA using [plink2](https://www.cog-genomics.org/plink/2.0/).
+- **PCA.sh**: bash script to run PCA using [plink2](https://www.cog-genomics.org/plink/2.0/)
 - Change the file extension of the FILENAME.eigenvec to FILENAME.txt
 - Replace column 1 of FILENAME.txt with individual names and column 2 with population labels (label columns 1 and 2 “Individual” and “Population” respectively)
 - **Rplot_PCA.R**: R script to plot PCA output
@@ -178,10 +178,11 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 
 ### Population structure
 #### [NGSadmix](www.popgen.dk/software/index.php/NgsAdmix)
-- ...
+- **NGSadmix.sh**: bash script to run NGSadmix over k = 11
+- **wrapper_ngsAdmix.sh**: bash script used to run NGSadmix (referred to in `NGSadmix.sh`)
 
 #### [PCAngsd](https://popgen.dk/software/index.php/PCAngsd)
-- ...
+- **PCAngsd.sh**: bash script to run PCAngsd
 
 ### Demographic history
 #### Runs of homozygosity
