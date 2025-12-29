@@ -1,4 +1,4 @@
-# WG outlier analysis using pcadapt https://bcm-uga.github.io/pcadapt/articles/pcadapt.html
+# WGR outlier analysis using pcadapt https://bcm-uga.github.io/pcadapt/articles/pcadapt.html
 
 # Using bed file and associated bim/fam files created using plink2
 # https://www.cog-genomics.org/plink/2.0/data#make_pgen
