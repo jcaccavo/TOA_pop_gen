@@ -1,9 +1,9 @@
-setwd("/Users/JMAC/Library/CloudStorage/Dropbox/Research/Humboldt/CCGA_full_sequencing/WG_outlier_analysis/WG_OutFLANK/downsampled_5X")
+setwd(".../INPUT_DIRECTORY")
 
 library(vcfR)
 library(OutFLANK)
 
-obj.vcfR <- read.vcfR("5x_TOA_only_filtered_SNPs_all.vcf")
+obj.vcfR <- read.vcfR("FILENAME.vcf")
 # Scanning file to determine attributes.
 # File attributes:
 #   meta lines: 1118
@@ -372,11 +372,11 @@ head(FstDataFrame)
 # 5      0.6944444
 # 6      0.6250000
 
-pdf("5x_Heterozygosity_FST.pdf")
+pdf("FILENAME_Heterozygosity_FST.pdf")
 plot(FstDataFrame$He, FstDataFrame$FST)
 dev.off()
 
-pdf("5x_FST_FSTNoCorr.pdf")
+pdf("FILENAME_FST_FSTNoCorr.pdf")
 plot(FstDataFrame$FST, FstDataFrame$FSTNoCorr)
 abline(0,1)
 dev.off()
@@ -423,18 +423,18 @@ head(output$results)
 # 5      0.6944444          5 goodH 0.8842727 0.7874188        0.3937094       FALSE
 # 6      0.6250000          6 goodH 0.8842727 0.5350248        0.7324876       FALSE
 
-readr::write_tsv(output$results, file = "5x_OutFLANK_results1.txt")
+readr::write_tsv(output$results, file = "FILENAME_OutFLANK_results.txt")
 # 0 outiers flagged as TRUE; 0 outliers detected
 
-pdf("5x_OutFLANKResultsPlot.pdf")
+pdf("FILENAME_OutFLANKResultsPlot.pdf")
 OutFLANKResultsPlotter(output,withOutliers=TRUE,NoCorr=TRUE,Hmin=0.1,binwidth=0.005,Zoom=FALSE,RightZoomFraction=0.05,titletext=NULL)
 dev.off()
 
-pdf("5x_PvaluesRightTail_histogram.pdf")
+pdf("FILENAME_PvaluesRightTail_histogram.pdf")
 hist(output$results$pvaluesRightTail)
 dev.off()
 
-pdf("5x_Pvalues_histogram.pdf")
+pdf("FILENAME_Pvalues_histogram.pdf")
 hist(output$results$pvalues)
 dev.off()
 
@@ -472,24 +472,15 @@ tail(P1)
 
 my_out <- P1$OutlierFlag==TRUE
 
-pdf("5x_Heterozygosity_FST2.pdf")
+pdf("FILENAME_Heterozygosity_FST2.pdf")
 plot(P1$He, P1$FST, pch=19, col=rgb(0,0,0,0.1))
 points(P1$He[my_out], P1$FST[my_out], col="blue")
 dev.off()
 
-pdf("5x_PvaluesRightTail_histogram2.pdf")
+pdf("FILENAME_PvaluesRightTail_histogram2.pdf")
 hist(P1$pvaluesRightTail)
 dev.off()
 
-pdf("5x_Pvalues_histogram2.pdf")
+pdf("FILENAME_Pvalues_histogram2.pdf")
 hist(P1$pvalues)
 dev.off()
-
-plot(P1$LocusName[P1$He>0.1], P1$FST[P1$He>0.1],
-     xlab="Position", ylab="FST", col=rgb(0,0,0,0.2))
-points(P1$LocusName[my_out], P1$FST[my_out], col="magenta", pch=20)
-# Error in plot.window(...) : need finite 'xlim' values
-# In addition: Warning messages:
-#   1: In xy.coords(x, y, xlabel, ylabel, log) : NAs introduced by coercion
-# 2: In min(x) : no non-missing arguments to min; returning Inf
-# 3: In max(x) : no non-missing arguments to max; returning -Inf
