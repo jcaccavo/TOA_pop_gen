@@ -1,0 +1,17 @@
+Installing smc++
+- Is not easy
+- The github says to use something called docker, but docker requires admin privileges that are not accessible on the server
+- They then say to use [singularity](https://sylabs.io/guides/3.7/user-guide/), which I managed to install, but then it is not clear at all how to use singularity to then install smc++
+- They say that conda is no longer supported, though there was [issue#253](https://github.com/popgenmethods/smcpp/issues/253) that had managed to install smc++ via conda in a separate, uniquely created (e.g. smcpp_env) environment
+- This still did not work
+- [issue#265](https://github.com/popgenmethods/smcpp/issues/265) saved the day; they explained that only a python package [mpfr-4.2.1.tar.xz](http://mpfr-4.2.1.tar.xz/) was needed to install smc++
+- To install this, I downloaded the `mpfr-4.2.1.tar.xz` file from the [mpfr.org](http://mpfr.org/) website
+- I then uploaded the file to my x_scripts folder on the server, and used `tar -xf mpfr-4.2.1.tar.xz` to extract the folder from the file
+- I followed the [instructions to install mpfr](https://www.mpfr.org/mpfr-current/mpfr.html#Installing-MPFR) from mpfr.org 
+- In the mpfr-4.2.1 directory, I typed `./configure` (exactly like that "period, forward slash, configure"), and this began the installation process
+- Then I typed `make`, which precipitated a very long text output, but that eventually did seem to finish successfully
+- Then I typed `make check`, which resulted in another very long text output, that did eventually seem to work as well
+- Then I typed `make install`, and while this did show errors, I nonetheless was finally able to proceed to the smc++ installation
+- Using pip, I was now able to install smc++
+    - `pip install git+https://github.com/popgenmethods/smcpp`
+- I was now able to check the version of smc++ (smc++ version), as well as use commands like the cite command (smc++), which seem to indicate that it is successfully installed
