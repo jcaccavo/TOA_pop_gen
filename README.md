@@ -2,61 +2,61 @@
 This repository contains data files and scripts used for 3RADseq and WGR data analysis from the paper Caccavo et al. 2026a "Whole-genome resequencing reveals exceptions to panmixia in the exploited top fish predator Antarctic toothfish (Dissostichus mawsoni)".
 
 ## 3RADseq
-Scripts and files required for the analysis of high-output sequencing data produced using 3RADseq.
+Scripts and files required for the analysis of high-output sequencing data produced using 3RADseq
 
 ### Preprocessing
-- **01_fastqc.sh**: bash script to check reads quality using fastqc. Output can then be compiled using multiqc.
-- **02_AdapterTrimming.sh**: bash script to remove sequencing adapters.
+- **01_fastqc.sh**: bash script to check reads quality using fastqc. Output can then be compiled using multiqc
+- **02_AdapterTrimming.sh**: bash script to remove sequencing adapters
 - **02a_AdapterTrimming.sh**: alternative bash script to remove sequencing adapters. In this alternative script, the adapter sequence is adjusted for the Illumina Universal Adapter script, as opposed to the Nextera Transposase Sequence.
-- **03_Demultiplexing.sh**: bash script for demultiplexing. Should be run in a flexbar conda environment.
-- **Internal_indexes_LIB_P5**: P5 internal indexes (referred to in `03_Demultiplexing.sh`).
-- **Internal_indexes_LIB_P7**: P7 internal indexes (referred to in `03_Demultiplexing.sh`).
+- **03_Demultiplexing.sh**: bash script for demultiplexing. Should be run in a flexbar conda environment
+- **Internal_indexes_LIB_P5**: P5 internal indexes (referred to in `03_Demultiplexing.sh`)
+- **Internal_indexes_LIB_P7**: P7 internal indexes (referred to in `03_Demultiplexing.sh`)
 - **04_Rename.sh**: bash script to rename demultiplexed files. Demultiplexing will have produced a lot of files, i.e., 2 reads x number of library pools x number of barcode combinations. Prepare renaming script using Excel following RenameIndividuals.xlsx example, and then replace the contents of the script uploaded here with your relevant input.
-- **RenameIndividuals.xlsx**: Excel file to prepare renaming script.
-- **05_PCRduplicatesFilter.sh**: bash script to filter PCR duplicates.
-- **filterPCRdups.py**: python script to filter PCR duplicates (referred to in `05_PCRduplicatesFilter.sh`).
-- **06_Concatenate_all.sh**: bash script to concatenate the 4 replicates per individual.
+- **RenameIndividuals.xlsx**: Excel file to prepare renaming script
+- **05_PCRduplicatesFilter.sh**: bash script to filter PCR duplicates
+- **filterPCRdups.py**: python script to filter PCR duplicates (referred to in `05_PCRduplicatesFilter.sh`)
+- **06_Concatenate_all.sh**: bash script to concatenate the 4 replicates per individual
 - **07_mapping.sh**: bash script to map concatenated reads to the _D. mawsoni_ reference genome (read 1 only). The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
-- **getInsertSizefromSAM.sh**: bash script to determine the read length distribution from mapping (.sam) files.
-- **getInsertSizefromSAM.py**: python script to determine the read length distribution from mapping (.sam) files (referred to in `getInsertSizefromSAM.sh`).
-- **plotFragSizes_args_fastq.R**: R script to plot read length distributions based on the output from getInsertSizefromSAM.py (referred to in `getInsertSizefromSAM.sh`).
+- **getInsertSizefromSAM.sh**: bash script to determine the read length distribution from mapping (.sam) files
+- **getInsertSizefromSAM.py**: python script to determine the read length distribution from mapping (.sam) files (referred to in `getInsertSizefromSAM.sh`)
+- **plotFragSizes_args_fastq.R**: R script to plot read length distributions based on the output from getInsertSizefromSAM.py (referred to in `getInsertSizefromSAM.sh`)
 - **08_merging.sh**: bash script to merge pair-end reads using [PEAR](https://cme.h-its.org/exelixis/web/software/pear/doc.html). Based on length distributions, modify the following script parameters (the rest remain unchanged):
-    - **-n – 30**: specifies the minimum possible length of the assembled sequences. Setting this value to 0 disables the restriction and assembled sequences may be arbitrarily short (default: 50);
-    - **-m – 310**: specifies the maximum possible length of the assembled sequences. Setting this value to 0 disables the restriction and assembled sequences may be arbitrarily long (default);
-    - **-v – 10**: specifies the minimum overlap size. The minimum overlap may be set to 1 when the statistical test is used. However, further restricting the minimum overlap size to a proper value may reduce false-positive assembles (default: 10).
+    - **-n – 30**: specifies the minimum possible length of the assembled sequences. Setting this value to 0 disables the restriction and assembled sequences may be arbitrarily short (default: 50)
+    - **-m – 310**: specifies the maximum possible length of the assembled sequences. Setting this value to 0 disables the restriction and assembled sequences may be arbitrarily long (default)
+    - **-v – 10**: specifies the minimum overlap size. The minimum overlap may be set to 1 when the statistical test is used. However, further restricting the minimum overlap size to a proper value may reduce false-positive assembles (default: 10)
 - **09_CorrectOrientation.sh**: The files to continue with are the *.unassembled.forward.fastq and *.unassembled.reverse.fastq. After using merging with [PEAR](https://cme.h-its.org/exelixis/web/software/pear/doc.html), R2 is inverted. This bash script corrects the orientation of R2.
-- **SeqIO_reverseComplement.py**: python script to to correct the orientation of R2 (referred to in `09_CorrectOrientation.sh`).
-- **10_QualityFilter.sh**: bash script to remove low quality reads using [Trimmomatic](https://doi.org/10.1093/bioinformatics/btu170).
+- **SeqIO_reverseComplement.py**: python script to to correct the orientation of R2 (referred to in `09_CorrectOrientation.sh`)
+- **10_QualityFilter.sh**: bash script to remove low quality reads using [Trimmomatic](https://doi.org/10.1093/bioinformatics/btu170)
 - **11_CheckRestSites.sh**: remove reads that don’t start and end with the correct restriction sites. Assure that the correct restriction enzyme sequences are indicated: XbaI **CTAGA**; EcoRI **AATTC**; MspI **CGG**.
 - **12a_EditHeaders.sh**: first in a set of three bash scripts to remove undigested reads. This first script edits the file headers.
 - **12b_SaveHeaders.sh**: second in a set of three bash scripts to remove undigested reads. This second script saves the headers of reads with intact restriction sites. Assure that the correct restriction enzyme sequences are indicated; note that these sequence indications include the base pair before the cut site.
-    - The first restriction site sequence is for the 1st enzyme (start) (e.g., XbaI or MspI).
-    - The second restriction site sequence is for the 3rd enzyme (middle) (e.g., ClaI or NheI).
+    - The first restriction site sequence is for the 1st enzyme (start) (e.g., XbaI or MspI)
+    - The second restriction site sequence is for the 3rd enzyme (middle) (e.g., ClaI or NheI)
     - The third rescrition site sequence is for the 2nd enzyme (end, EcoRI). **XbaI** TCTAGA; **EcoRI** GAATTC; **MspI** CCGG; **ClaI** ATCGAT; **NheI** GCTAGC.
 - **12c_3enzymesFilter.sh**: this in a set of three bash script to remove undigested reads. This third script filters out the reads indicated in the list created in the previous script.
-- **Filter_reads.py**: python script to remove undigested read (referred to in `12c_3enzymesFilter.sh`).
+- **Filter_reads.py**: python script to remove undigested read (referred to in `12c_3enzymesFilter.sh`)
 - **13_final_fastqc.sh**: bash script to check reads quality using fastqc after all pre-processing steps. Output can then be compiled using multiqc.
 - **14_final_mapping.sh**: bash script to map fully pre-processed reads to the _D. mawsoni_ reference genome. The _D. mawsoni_ reference genome is available from GenBank accession number [JAAKFY000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAAKFY000000000).
-- **15_convert_sam_to_bam.sh**: bash script employing [samtools view](https://www.htslib.org/doc/samtools-view.html) to convert .sam files generated from mapping to .bam files.
-- **16_sort_bam.sh**: bash script employing [samtools sort](https://www.htslib.org/doc/samtools-sort.html) to sort .bam files.
-- **coverage.sh**: bash script employing [samtools depth](https://www.htslib.org/doc/samtools-depth.html) to check post-preprocessing coverage of each library.
+- **15_convert_sam_to_bam.sh**: bash script employing [samtools view](https://www.htslib.org/doc/samtools-view.html) to convert .sam files generated from mapping to .bam files
+- **16_sort_bam.sh**: bash script employing [samtools sort](https://www.htslib.org/doc/samtools-sort.html) to sort .bam files
+- **coverage.sh**: bash script employing [samtools depth](https://www.htslib.org/doc/samtools-depth.html) to check post-preprocessing coverage of each library
   
 ### SNP calling
 - **Create popmap file(s)**: create as many popmap files as potential population configurations. This can be done in Excel, saving each popmap sheet as tab-delimited text file (.txt). Column 1 of the popmap file must contain the individual sample names EXACTLY as they are written for the .bam files. Column 2 contains the population number to which the individual belongs (e.g. 1, 2, 5, etc.).
-- **popmap.txt**: example popmap file.
-- **17_Stacks.sh**: bash script to run [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php).
-    - **inPath**: location of the .bam files which represent the reads mapped to the genome (only the .bam files to be processed should be in the input folder).
-    - **outPath**: where you want to save the output files.
-    - **popmap**: the location of the popmap file to be used.
+- **popmap.txt**: example popmap file
+- **17_Stacks.sh**: bash script to run [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php)
+    - **inPath**: location of the .bam files which represent the reads mapped to the genome (only the .bam files to be processed should be in the input folder)
+    - **outPath**: where you want to save the output files
+    - **popmap**: the location of the popmap file to be used
     - **Refmap**: the location of the Refmap file, which is a [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) file. This is either located in the directory where [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) downloaded, or you can copy the file to your scripts folder.
     - **PREFIX**: how you want the output files to be labelled. This should be based on your popmap file name.
-    - Each $Refmap run refers to a different run of [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php).
+    - Each $Refmap run refers to a different run of [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php)
     - The standard bash script runs [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) 3 times with 3 different sets of parameters. For each $Refmap line, change the name of the $popmap file after --popmap based on the name of the popmap file given in the script header.
 - **[STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) output files of note**:
     - **gstacks.log** is a summary of the first part of the [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) analysis which uses the software `gstacks`. This includes: 1) total number of loci; 2) average number of sites per locus; and 3) sequencing depth statistics: minimum, maximum, average, and standard deviation.
     - **populations.log** is a summary of the second part of the [STACKS](https://catchenlab.life.illinois.edu/stacks/comp/genotypes.php) analysis which uses the software `populations`. This includes: 1) population configurations analyzed (based on the popmap file); 2) loci kept; 3) sites identified on kept loci; 4) variant sites identified on kept loci; 5) genomic sites; 6) genomic sites covered by multiple loci; 7) percent of genomic sites covered by multiple loci; 8) average genotyped sites per locus in bp; 9) samples per locus; 10) nucleotide diversity or pi; 11) all sites identified on kept loci; 12) variant sites identified on kept loci; 13) polymorphic sites identified on kept loci; and 14) private alleles.
-    - **populations.sumstats_summary.tsv** includes a lot of the info found in the **populations.log** file, as well as observed and expected hetero- and homozygosity.
-    - **populations.snps.vcf** will be used for downstream filtering and subsequent population structure analyses.
+    - **populations.sumstats_summary.tsv** includes a lot of the info found in the **populations.log** file, as well as observed and expected hetero- and homozygosity
+    - **populations.snps.vcf** will be used for downstream filtering and subsequent population structure analyses
 - **Sort .vcf files** by running the following command for each .vcf file: `cat FILENAME.vcf | awk '$1 ~ /^#/ {print $0;next} {print $0 | "sort -k1,1V -k2,2n"}' > FILENAME.SORTED.vcf`
 - **Filter .vcf files** using [VCFtools](https://vcftools.github.io/index.html). Navigate to folder with .vcf files, and run each filtering command separately for each individual .vcf file. After each filtering step, count the number of SNPs remaining. To count SNPs in a .vcf file: `vcftools --vcf FILENAME.vcf`
     - **Minimum coverage**: minimum depth to call a genotype – reduces genotype miscalls. Check a minimum coverage of 10 and 15 to see how SNP numbers change. A minimum coverage of 10 is standard. `vcftools --vcf FILENAME.SORTED.vcf --min-meanDP 10 --minDP 10 --recode --stdout > FILENAME.SORTED_mincov10.vcf`
@@ -75,11 +75,11 @@ Scripts and files required for the analysis of high-output sequencing data produ
             - **VCF_sorted**: with the file location (if needed)
             - **OUTpath**: with output file location
         - The 3 outputs files to use in downstream analyses:
-            - FILENAME.vcf.KingClean.admix.fam
-            - FILENAME.vcf.KingClean.admix.bim
-            - FILENAME.vcf.KingClean.admix.bed
-        - In addition to a log file (FILENAME.vcf.KingClean.admix.log) 01_clean_related.sh outputs 2 files that contain the sample IDs of individuals in the population that are unrelated (FILENAME.vcf.KingClean.admix.king.cutoff.in.id) and the sample IDs of individuals in the population that were removed due to being related to other individuals in the population (FILENAME.vcf.KingClean.admix.king.cutoff.out.id)
-        - If there are no related individuals (indicated both in the FILENAME.vcf.KingClean.admix.king.cutoff.out.id  file, as well as in the FILENAME.vcf.KingClean.admix.log file), then subsequent steps can be carried out on the combined filtered vcf file created after combined filtering.
+            - `FILENAME.vcf.KingClean.admix.fam`
+            - `FILENAME.vcf.KingClean.admix.bim`
+            - `FILENAME.vcf.KingClean.admix.bed`
+        - In addition to a log file (FILENAME.vcf.KingClean.admix.log) 01_clean_related.sh outputs 2 files that contain the sample IDs of individuals in the population that are unrelated (FILENAME.vcf.KingClean.admix.king.cutoff.in.id) and the sample IDs of individuals in the population that were removed due to being related to other individuals in the population (`FILENAME.vcf.KingClean.admix.king.cutoff.out.id`)
+        - If there are no related individuals (indicated both in the `FILENAME.vcf.KingClean.admix.king.cutoff.out.id` file, as well as in the `FILENAME.vcf.KingClean.admix.log` file), then subsequent steps can be carried out on the combined filtered vcf file created after combined filtering
         - If there are related individuals, then filtering steps should be carried out on the .fam/.bim/.bed files created as outputs of the `01_clean_related.sh` script
      
 ### Population structure
@@ -99,7 +99,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
         - In the `Outputs-FILENAME` folder there will be a P and a Q file for each k value of the Admixture run (normally k = 1 – 10). For each k value run, there are 5 replicates e.g. 4.1.Q – 4.5.Q).
     - In addition, there is `FILENAME.k.x.out` log file for each replicate of each k value replicate (x) run in admixture
 - **cross_validation_plotting.R**: R script to plot the cross-validation (CV) errors using the `FILENAME.admix.CV_All.txt` file.
-- **Rscript_PlotAdmixture.R**: R script to plot Admixture output.
+- **Rscript_PlotAdmixture.R**: R script to plot Admixture output
     - Retain only the P and Q files of the first replicate of each k value run
     - Rename the retained P and Q files such that they end in FILENAME.1.P
     - Create the popfile.txt
@@ -118,32 +118,32 @@ Scripts and files required for the analysis of high-output sequencing data produ
 - **PCA.sh**: bash script to run PCA using [plink2](https://www.cog-genomics.org/plink/2.0/).
 - Change the file extension of the FILENAME.eigenvec to FILENAME.txt
 - Replace column 1 of FILENAME.txt with individual names and column 2 with population labels (label columns 1 and 2 “Individual” and “Population” respectively)
-- **Rplot_PCA.R**: R script to plot PCA output.
-- **Rplot_PCA_input_files**: input files to create PCA plots using `Rplot_PCA.R`.
+- **Rplot_PCA.R**: R script to plot PCA output
+- **Rplot_PCA_input_files**: input files to create PCA plots using `Rplot_PCA.R`
 
 ### Outlier analysis
 #### [pcadapt](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html)
-- **pcadapt.R**: R script to run PCAs, create plots, and identify outliers based on population structure using a .bed/.bim/.fam file as input.
-- **pcadapt_input_files**: input files to run outlier analysis using `pcadapt.R`.
+- **pcadapt.R**: R script to run PCAs, create plots, and identify outliers based on population structure using a .bed/.bim/.fam file as input
+- **pcadapt_input_files**: input files to run outlier analysis using `pcadapt.R`
 
 #### [bayescan](https://github.com/mfoll/BayeScan)
-- Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for bayescan.
-- **bayescan.sh**: bash script to run bayescan on input file created with [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/).
-- **plot_bayescan_R.r**: R script to determine outliers at different significance levels.
+- Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for bayescan
+- **bayescan.sh**: bash script to run bayescan on input file created with [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/)
+- **plot_bayescan_R.r**: R script to determine outliers at different significance levels
 - **bayescan_run_fst.txt**: input file to determine outliers at different significance levels using `plot_bayescan_R.r`
 
 #### [OutFLANK](https://github.com/whitlock/OutFLANK)
-- **outflank.R**: R script to identify outliers with [OutFLANK](https://github.com/whitlock/OutFLANK) using .vcf file as input.
+- **outflank.R**: R script to identify outliers with [OutFLANK](https://github.com/whitlock/OutFLANK) using .vcf file as input
 
 #### FDIST as implemented in [Arlequin](https://cmpg.unibe.ch/software/arlequin35/)
-- Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for FDIST.
-- **FDIST_input.arp**: input file for FDIST.
+- Used [PGDspider](https://software.bioinformatics.unibe.ch/pgdspider/) to create input file for FDIST
+- **FDIST_input.arp**: input file for FDIST
 
 ## WGR
-Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR).
+Scripts and files required for the analysis of high-output sequencing data produced using whole-genome resequencing (WGR)
 
 ### Preprocessing & SNP calling
-All details regarding the preprocessing of WGR data and eventual SNP calling can be found in [Caccavo et al. 2024](https://doi.org/10.1111/1755-0998.14013).
+All details regarding the preprocessing of WGR data and eventual SNP calling can be found in [Caccavo et al. 2024](https://doi.org/10.1111/1755-0998.14013)
 
 ### Genomic summary statistics
 #### Genome-wide heterozygosity
@@ -166,7 +166,7 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 
 ### Neutral and adaptive diversity
 #### [pcadapt](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html)
-- **WG_pcadapt.R**: R script to run PCAs, create plots, and identify WGR outliers based on population structure using a .bed/.bim/.fam file as input.
+- **WG_pcadapt.R**: R script to run PCAs, create plots, and identify WGR outliers based on population structure using a .bed/.bim/.fam file as input
 
 #### [bayescan](https://github.com/mfoll/BayeScan)
 - **WGR_bayescan_input_file_prep.R**: R script to prepare input file for bayescan based on [tutorial from Laura Benestan](https://rpubs.com/lbenestan/outlier)
@@ -174,7 +174,7 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 - **WGR_plot_bayescan_R.r**: R script to determine outliers at different significance levels
 
 #### [OutFLANK](https://github.com/whitlock/OutFLANK)
-- ...
+- **WGR_outflank.R**: R script to identify outliers with [OutFLANK](https://github.com/whitlock/OutFLANK) using .vcf file as input
 
 ### Population structure
 #### [NGSadmix](www.popgen.dk/software/index.php/NgsAdmix)
