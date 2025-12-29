@@ -149,10 +149,13 @@ All details regarding the preprocessing of WGR data and eventual SNP calling can
 #### Genome-wide heterozygosity
 - For each .bam file, estimate the per individual saf file `angsd -i FILENAME.bam -anc .../D.mawsoni.genome.fasta -dosaf 1 -gl 1 -nThreads 40 -out DoSaf_FILENAME`
 - Then estimate the per indivdual folded SFS `realSFS DoSaf_FILENAME.idx > DoSaf_FILENAME_est.ml`
+- 2-step process should take 20 - 30 minutes per .bam file, depending on its size
 - **calculate_heterozygosity.R**: R script to calculate genome-wide heterozygosity based on realSFS .ml output files
 
 #### Inbreeding coefficient (F)
-- ...
+- **ngsF.sh**: bash script to estimate inbreeding coefficients (F), running 10 replicates to prevent convergence to local maxima with [ngsF](github.com/fgvieira/ngsF)
+- The initial run to get approximate values should take 10 minutes per .glf file (depending on the size)
+- The final run using the initial values as priors should take 6 hours per .glf file (depending on the size)
 
 #### Tajima's D & Watterson's Theta
 - ...
