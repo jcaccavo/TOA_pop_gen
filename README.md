@@ -1,6 +1,5 @@
 # TOA_pop_gen
-This repository contains data files and scripts used for 3RADseq and WGR data analysis from the paper Caccavo et al. 2026a "Whole-genome resequencing reveals exceptions to panmixia in the exploited top fish predator Antarctic toothfish (Dissostichus mawsoni)".
-
+This repository contains data files and scripts used for 3RADseq and WGR data analysis from the paper [Caccavo et al. 2025](https://doi.org/10.64898/2025.12.01.691552) "Whole-genome resequencing reveals exceptions to panmixia in the exploited top fish predator Antarctic toothfish (Dissostichus mawsoni)".
 ## 3RADseq
 Scripts and files required for the analysis of high-output sequencing data produced using 3RADseq
 
