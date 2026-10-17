@@ -77,7 +77,7 @@ Scripts and files required for the analysis of high-output sequencing data produ
             - `FILENAME.vcf.KingClean.admix.fam`
             - `FILENAME.vcf.KingClean.admix.bim`
             - `FILENAME.vcf.KingClean.admix.bed`
-        - In addition to a log file (FILENAME.vcf.KingClean.admix.log) 01_clean_related.sh outputs 2 files that contain the sample IDs of individuals in the population that are unrelated (FILENAME.vcf.KingClean.admix.king.cutoff.in.id) and the sample IDs of individuals in the population that were removed due to being related to other individuals in the population (`FILENAME.vcf.KingClean.admix.king.cutoff.out.id`)
+        - In addition to a log file (FILENAME.vcf.KingClean.admix.log) clean_related.sh outputs 2 files that contain the sample IDs of individuals in the population that are unrelated (FILENAME.vcf.KingClean.admix.king.cutoff.in.id) and the sample IDs of individuals in the population that were removed due to being related to other individuals in the population (`FILENAME.vcf.KingClean.admix.king.cutoff.out.id`)
         - If there are no related individuals (indicated both in the `FILENAME.vcf.KingClean.admix.king.cutoff.out.id` file, as well as in the `FILENAME.vcf.KingClean.admix.log` file), then subsequent steps can be carried out on the combined filtered .vcf file created after combined filtering
         - If there are related individuals, then filtering steps should be carried out on the .fam/.bim/.bed files created as outputs of the `01_clean_related.sh` script
      
